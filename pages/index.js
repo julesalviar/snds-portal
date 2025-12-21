@@ -30,8 +30,6 @@ export async function getStaticProps() {
 
     return {
         props: { tenants },
-        // Revalidate every 3600 seconds (1 hour) to keep data fresh
-        revalidate: 3600,
     };
 }
 
