@@ -1,7 +1,21 @@
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import InfoIcon from '@mui/icons-material/Info';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Header() {
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const router = useRouter();
+
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    const isActive = (path) => router.pathname === path;
     return (
         <AppBar 
             position="static" 
@@ -13,26 +27,52 @@ export default function Header() {
                 '&::before': {
                     content: '""',
                     position: 'absolute',
-                    top: '-50%',
-                    left: '-20%',
-                    right: '-20%',
-                    bottom: '-50%',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
                     background: `
-                        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
-                        repeating-conic-gradient(
-                            from 0deg at 50% 50%,
-                            transparent 0deg,
-                            rgba(255, 255, 255, 0.03) 2deg,
-                            transparent 4deg,
-                            rgba(255, 255, 255, 0.02) 6deg,
-                            transparent 8deg
+                        repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 24px,
+                            rgba(255, 255, 255, 0.06) 24px,
+                            rgba(255, 255, 255, 0.06) 28px
+                        ),
+                        repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 18px,
+                            rgba(255, 255, 255, 0.05) 18px,
+                            rgba(255, 255, 255, 0.05) 20px
+                        ),
+                        repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 12px,
+                            rgba(255, 255, 255, 0.04) 12px,
+                            rgba(255, 255, 255, 0.04) 14px
+                        ),
+                        repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 8px,
+                            rgba(255, 255, 255, 0.03) 8px,
+                            rgba(255, 255, 255, 0.03) 9px
+                        ),
+                        repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 4px,
+                            rgba(255, 255, 255, 0.02) 4px,
+                            rgba(255, 255, 255, 0.02) 5px
                         )
                     `,
+                    backgroundSize: '200% 200%',
+                    backgroundPosition: '0% 0%',
                     pointerEvents: 'none',
                     zIndex: 0,
-                    animation: 'float 20s ease-in-out infinite',
+                    animation: 'waveFlow 150s linear infinite',
                 },
                 '&::after': {
                     content: '""',
@@ -43,42 +83,55 @@ export default function Header() {
                     bottom: 0,
                     background: `
                         repeating-linear-gradient(
-                            0deg,
-                            transparent,
-                            transparent 2px,
-                            rgba(255, 255, 255, 0.02) 2px,
-                            rgba(255, 255, 255, 0.02) 4px
+                            -45deg,
+                            transparent 0px,
+                            transparent 20px,
+                            rgba(255, 255, 255, 0.05) 20px,
+                            rgba(255, 255, 255, 0.05) 24px
                         ),
                         repeating-linear-gradient(
-                            90deg,
-                            transparent,
-                            transparent 3px,
-                            rgba(255, 255, 255, 0.015) 3px,
-                            rgba(255, 255, 255, 0.015) 6px
+                            -45deg,
+                            transparent 0px,
+                            transparent 14px,
+                            rgba(255, 255, 255, 0.04) 14px,
+                            rgba(255, 255, 255, 0.04) 16px
                         ),
-                        radial-gradient(
-                            ellipse 200% 100% at 0% 0%,
-                            rgba(255, 255, 255, 0.05) 0%,
-                            transparent 40%
+                        repeating-linear-gradient(
+                            -45deg,
+                            transparent 0px,
+                            transparent 10px,
+                            rgba(255, 255, 255, 0.03) 10px,
+                            rgba(255, 255, 255, 0.03) 11px
                         ),
-                        radial-gradient(
-                            ellipse 200% 100% at 100% 100%,
-                            rgba(255, 255, 255, 0.05) 0%,
-                            transparent 40%
+                        repeating-linear-gradient(
+                            -45deg,
+                            transparent 0px,
+                            transparent 6px,
+                            rgba(255, 255, 255, 0.02) 6px,
+                            rgba(255, 255, 255, 0.02) 7px
                         )
                     `,
+                    backgroundSize: '200% 200%',
+                    backgroundPosition: '0% 0%',
                     pointerEvents: 'none',
                     zIndex: 0,
+                    animation: 'waveFlow 300s linear infinite reverse',
                 },
-                '@keyframes float': {
-                    '0%, 100%': {
-                        transform: 'translate(0, 0) rotate(0deg)',
+                '@keyframes waveFlow': {
+                    '0%': {
+                        backgroundPosition: '0% 0%',
                     },
-                    '33%': {
-                        transform: 'translate(10px, -10px) rotate(2deg)',
+                    '25%': {
+                        backgroundPosition: '10% 15%',
                     },
-                    '66%': {
-                        transform: 'translate(-10px, 10px) rotate(-2deg)',
+                    '50%': {
+                        backgroundPosition: '20% 10%',
+                    },
+                    '75%': {
+                        backgroundPosition: '15% 20%',
+                    },
+                    '100%': {
+                        backgroundPosition: '0% 0%',
                     },
                 },
             }}
@@ -88,30 +141,46 @@ export default function Header() {
                 position: 'relative',
                 zIndex: 1,
             }}>
-                <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
-                    SNDS WEB PORTAL
+                <Typography 
+                    variant="h6" 
+                    component="div" 
+                    sx={{ 
+                        fontWeight: 600,
+                        fontSize: { xs: '1rem', sm: '1.25rem' },
+                    }}
+                >
+                    <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                        SNDS WEB PORTAL
+                    </Box>
+                    <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>
+                        SNDS
+                    </Box>
                 </Typography>
-                <Box sx={{ display: 'flex', gap: 1.5 }}>
+                
+                {/* Desktop Navigation - M3 Style */}
+                <Box sx={{ 
+                    display: { xs: 'none', md: 'flex' }, 
+                    gap: 1 
+                }}>
                     <Link href="/" style={{ textDecoration: 'none' }}>
                         <Button 
+                            variant={isActive('/') ? 'contained' : 'text'}
                             color="inherit" 
+                            startIcon={<HomeIcon />}
                             sx={{ 
                                 textTransform: 'none',
-                                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                                backdropFilter: 'blur(10px)',
+                                fontWeight: isActive('/') ? 600 : 500,
+                                padding: '10px 24px',
+                                borderRadius: '28px',
+                                minWidth: 'auto',
+                                backgroundColor: isActive('/') 
+                                    ? 'rgba(255, 255, 255, 0.2)' 
+                                    : 'transparent',
                                 color: '#ffffff',
-                                fontWeight: 600,
-                                padding: '8px 20px',
-                                borderRadius: '20px',
-                                border: '1px solid rgba(255, 255, 255, 0.3)',
-                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
                                 '&:hover': {
-                                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-                                    border: '1px solid rgba(255, 255, 255, 0.5)',
-                                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
-                                    transform: 'translateY(-2px)',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
                                 },
-                                transition: 'all 0.3s ease',
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
                         >
                             Home
@@ -119,24 +188,23 @@ export default function Header() {
                     </Link>
                     <Link href="/about" style={{ textDecoration: 'none' }}>
                         <Button 
+                            variant={isActive('/about') ? 'contained' : 'text'}
                             color="inherit" 
+                            startIcon={<InfoIcon />}
                             sx={{ 
                                 textTransform: 'none',
-                                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                                backdropFilter: 'blur(10px)',
+                                fontWeight: isActive('/about') ? 600 : 500,
+                                padding: '10px 24px',
+                                borderRadius: '28px',
+                                minWidth: 'auto',
+                                backgroundColor: isActive('/about') 
+                                    ? 'rgba(255, 255, 255, 0.2)' 
+                                    : 'transparent',
                                 color: '#ffffff',
-                                fontWeight: 600,
-                                padding: '8px 20px',
-                                borderRadius: '20px',
-                                border: '1px solid rgba(255, 255, 255, 0.3)',
-                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
                                 '&:hover': {
-                                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-                                    border: '1px solid rgba(255, 255, 255, 0.5)',
-                                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
-                                    transform: 'translateY(-2px)',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
                                 },
-                                transition: 'all 0.3s ease',
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
                         >
                             About
@@ -144,31 +212,199 @@ export default function Header() {
                     </Link>
                     <Link href="/contact" style={{ textDecoration: 'none' }}>
                         <Button 
+                            variant={isActive('/contact') ? 'contained' : 'text'}
                             color="inherit" 
+                            startIcon={<ContactMailIcon />}
                             sx={{ 
                                 textTransform: 'none',
-                                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                                backdropFilter: 'blur(10px)',
+                                fontWeight: isActive('/contact') ? 600 : 500,
+                                padding: '10px 24px',
+                                borderRadius: '28px',
+                                minWidth: 'auto',
+                                backgroundColor: isActive('/contact') 
+                                    ? 'rgba(255, 255, 255, 0.2)' 
+                                    : 'transparent',
                                 color: '#ffffff',
-                                fontWeight: 600,
-                                padding: '8px 20px',
-                                borderRadius: '20px',
-                                border: '1px solid rgba(255, 255, 255, 0.3)',
-                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
                                 '&:hover': {
-                                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
-                                    border: '1px solid rgba(255, 255, 255, 0.5)',
-                                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
-                                    transform: 'translateY(-2px)',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
                                 },
-                                transition: 'all 0.3s ease',
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
                         >
                             Contact
                         </Button>
                     </Link>
                 </Box>
+
+                {/* Mobile Menu Button - M3 Style */}
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="end"
+                    onClick={handleDrawerToggle}
+                    sx={{ 
+                        display: { xs: 'block', md: 'none' },
+                        padding: '12px',
+                        borderRadius: '24px',
+                        '&:hover': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                        },
+                        transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                    }}
+                >
+                    <MenuIcon />
+                </IconButton>
             </Toolbar>
+
+            {/* Mobile Drawer - M3 Navigation Drawer */}
+            <Drawer
+                anchor="right"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true,
+                }}
+                sx={{
+                    display: { xs: 'block', md: 'none' },
+                    '& .MuiDrawer-paper': {
+                        boxSizing: 'border-box',
+                        width: 320,
+                        backgroundColor: 'primary.main',
+                        backgroundImage: `
+                            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 50%)
+                        `,
+                        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.24)',
+                    },
+                }}
+            >
+                <Box sx={{ pt: 2 }}>
+                    <Typography 
+                        variant="h6" 
+                        sx={{ 
+                            px: 3, 
+                            py: 2, 
+                            fontWeight: 600,
+                            color: 'white',
+                        }}
+                    >
+                        Navigation
+                    </Typography>
+                    <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
+                    <List sx={{ px: 2, py: 1 }}>
+                        <ListItem disablePadding>
+                            <Link href="/" style={{ textDecoration: 'none', width: '100%' }}>
+                                <ListItemButton
+                                    selected={isActive('/')}
+                                    onClick={handleDrawerToggle}
+                                    sx={{
+                                        borderRadius: '28px',
+                                        mb: 0.5,
+                                        backgroundColor: isActive('/') 
+                                            ? 'rgba(255, 255, 255, 0.16)' 
+                                            : 'transparent',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                                        },
+                                        '&.Mui-selected': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                                            '&:hover': {
+                                                backgroundColor: 'rgba(255, 255, 255, 0.20)',
+                                            },
+                                        },
+                                        transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    }}
+                                >
+                                    <HomeIcon sx={{ mr: 2, color: 'white' }} />
+                                    <ListItemText 
+                                        primary="Home" 
+                                        sx={{ 
+                                            color: 'white',
+                                            '& .MuiListItemText-primary': {
+                                                fontWeight: isActive('/') ? 600 : 500,
+                                                fontSize: '0.9375rem',
+                                            },
+                                        }}
+                                    />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <Link href="/about" style={{ textDecoration: 'none', width: '100%' }}>
+                                <ListItemButton
+                                    selected={isActive('/about')}
+                                    onClick={handleDrawerToggle}
+                                    sx={{
+                                        borderRadius: '28px',
+                                        mb: 0.5,
+                                        backgroundColor: isActive('/about') 
+                                            ? 'rgba(255, 255, 255, 0.16)' 
+                                            : 'transparent',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                                        },
+                                        '&.Mui-selected': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                                            '&:hover': {
+                                                backgroundColor: 'rgba(255, 255, 255, 0.20)',
+                                            },
+                                        },
+                                        transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    }}
+                                >
+                                    <InfoIcon sx={{ mr: 2, color: 'white' }} />
+                                    <ListItemText 
+                                        primary="About" 
+                                        sx={{ 
+                                            color: 'white',
+                                            '& .MuiListItemText-primary': {
+                                                fontWeight: isActive('/about') ? 600 : 500,
+                                                fontSize: '0.9375rem',
+                                            },
+                                        }}
+                                    />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <Link href="/contact" style={{ textDecoration: 'none', width: '100%' }}>
+                                <ListItemButton
+                                    selected={isActive('/contact')}
+                                    onClick={handleDrawerToggle}
+                                    sx={{
+                                        borderRadius: '28px',
+                                        backgroundColor: isActive('/contact') 
+                                            ? 'rgba(255, 255, 255, 0.16)' 
+                                            : 'transparent',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                                        },
+                                        '&.Mui-selected': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                                            '&:hover': {
+                                                backgroundColor: 'rgba(255, 255, 255, 0.20)',
+                                            },
+                                        },
+                                        transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    }}
+                                >
+                                    <ContactMailIcon sx={{ mr: 2, color: 'white' }} />
+                                    <ListItemText 
+                                        primary="Contact" 
+                                        sx={{ 
+                                            color: 'white',
+                                            '& .MuiListItemText-primary': {
+                                                fontWeight: isActive('/contact') ? 600 : 500,
+                                                fontSize: '0.9375rem',
+                                            },
+                                        }}
+                                    />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                    </List>
+                </Box>
+            </Drawer>
         </AppBar>
     );
 }
