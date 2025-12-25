@@ -73,6 +73,8 @@ export default function Header() {
                     pointerEvents: 'none',
                     zIndex: 0,
                     animation: 'waveFlow 150s linear infinite',
+                    maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0) 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0) 100%)',
                 },
                 '&::after': {
                     content: '""',
@@ -116,6 +118,8 @@ export default function Header() {
                     pointerEvents: 'none',
                     zIndex: 0,
                     animation: 'waveFlow 300s linear infinite reverse',
+                    maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0) 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0) 100%)',
                 },
                 '@keyframes waveFlow': {
                     '0%': {
