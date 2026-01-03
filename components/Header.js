@@ -4,18 +4,31 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [currentPath, setCurrentPath] = useState('');
     const router = useRouter();
+
+    useEffect(() => {
+        // Set current path after mount to avoid hydration mismatch
+        setCurrentPath(router.asPath || router.pathname || '');
+    }, [router.asPath, router.pathname]);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
-    const isActive = (path) => router.pathname === path;
+    const isActive = (path) => {
+        if (!currentPath) return false;
+        // Handle exact match and root path
+        if (path === '/') {
+            return currentPath === '/' || currentPath === '';
+        }
+        return currentPath === path || currentPath.startsWith(path + '/');
+    };
     return (
         <AppBar 
             position="static" 
