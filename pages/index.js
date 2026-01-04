@@ -72,8 +72,7 @@ export default function Home({ tenants, regionsData }) {
             }
         });
         
-        // Sort by name
-        return options.sort((a, b) => a.name.localeCompare(b.name));
+        return options;
     }, [regionsData]);
 
     // Compute default region: "SOCCSKSARGEN" if available, otherwise "all"
@@ -203,7 +202,7 @@ export default function Home({ tenants, regionsData }) {
                                 color: 'primary.main',
                             }}
                         >
-                            {displayRegion} DIVISIONS
+                            {displayRegion} { displayRegion === 'PRACTICE SITE' ? '' : 'DIVISIONS'}
                         </Typography>
                         {regionOptions.length > 0 && (
                             <FormControl
@@ -271,8 +270,8 @@ export default function Home({ tenants, regionsData }) {
                         <Box sx={{ textAlign: 'center', padding: 4 }}>
                             <Typography variant="body1" color="text.secondary">
                                 {selectedRegion === 'all' 
-                                    ? 'No tenants available at the moment.'
-                                    : `No tenants found for the selected region.`
+                                    ? 'No divisions available at the moment.'
+                                    : `No divisions found for the selected region.`
                                 }
                             </Typography>
                         </Box>
