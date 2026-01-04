@@ -72,7 +72,7 @@ export default function About() {
                             }}
                         >
                             The School Needs Data System (SNDS) is the official web-based partnership engagement
-                            system of the Schools Division Office of General Santos City's Social Mobilization and
+                            system of the Schools Division Office of General Santos City&apos;s Social Mobilization and
                             Networking Unit, located on Tiongson Street, Barangay Lagao. SNDS provides a centralized
                             platform for collaboration between schools and external partners,
                             including private sector entities, civil society organizations,
@@ -241,7 +241,7 @@ export default function About() {
                                 <li>consolidate generated resources at the school, district, & division level through
                                     partnership</li>
                                 <li>consolidates stakeholders’ profile</li>
-                                <li>facilitates ease of monitoring and evaluation of program holders' implementation
+                                <li>facilitates ease of monitoring and evaluation of program holders&apos; implementation
                                     of their annual plans</li>
                                 <li>provides relevant information for our program holders that aids in providing
                                     technical assistance and monitoring and evaluation.</li>

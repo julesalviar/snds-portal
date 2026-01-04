@@ -71,8 +71,8 @@ export default function Contact() {
                                 color: 'text.primary',
                             }}
                         >
-                            If SNDS sounds like something you'd like to know more about, please get in touch.
-                            We're always happy to discuss it!
+                            If SNDS sounds like something you&apos;d like to know more about, please get in touch.
+                            We&apos;re always happy to discuss it!
                         </Typography>
 
                         <Box
