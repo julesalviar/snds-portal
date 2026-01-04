@@ -5,6 +5,11 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link
+          rel="icon"
+          type="image/png"
+          href="https://media.mysnds.com/portal/logosnds.png"
+        />
+        <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
         />

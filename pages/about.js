@@ -61,6 +61,57 @@ export default function About() {
                             About Us
                         </Typography>
                         
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                textAlign: 'center',
+                                marginBottom: 5,
+                                marginTop: 2,
+                            }}
+                        >
+                            <Box
+                                component="img"
+                                src="https://media.mysnds.com/portal/logosnds.png"
+                                alt="SNDS Logo"
+                                sx={{
+                                    height: { xs: '80px', sm: '100px', md: '120px' },
+                                    width: 'auto',
+                                    objectFit: 'contain',
+                                    marginBottom: 1,
+                                }}
+                            />
+                            <Typography
+                                variant="h3"
+                                component="h2"
+                                sx={{
+                                    fontWeight: 700,
+                                    color: 'primary.main',
+                                    marginBottom: 1,
+                                    fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' },
+                                    letterSpacing: '0.05em',
+                                    lineHeight: 1.2,
+                                }}
+                            >
+                                SNDS
+                            </Typography>
+
+                            <Typography
+                                variant="h6"
+                                component="p"
+                                sx={{
+                                    fontWeight: 400,
+                                    color: 'text.primary',
+                                    fontStyle: 'italic',
+                                    marginBottom: 3,
+                                    fontSize: { xs: '0.9rem', sm: '1rem' },
+                                }}
+                            >
+                                Strengthening Network of Partners through Digitally-Driven System
+                            </Typography>
+                        </Box>
+                        
                         <Typography
                             variant="body1"
                             component="p"

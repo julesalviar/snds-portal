@@ -158,21 +158,43 @@ export default function Header() {
                 position: 'relative',
                 zIndex: 1,
             }}>
-                <Typography 
-                    variant="h6" 
-                    component="div" 
-                    sx={{ 
-                        fontWeight: 600,
-                        fontSize: { xs: '1rem', sm: '1.25rem' },
-                    }}
-                >
-                    <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-                        SNDS WEB PORTAL
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <Link href="/" style={{ textDecoration: 'none', display: 'flex' }}>
+                        <Box
+                            component="img"
+                            src="https://media.mysnds.com/portal/logosnds.png"
+                            alt="SNDS Logo"
+                            sx={{
+                                height: { xs: '32px', sm: '40px' },
+                                width: 'auto',
+                                objectFit: 'contain',
+                                display: 'block',
+                                cursor: 'pointer',
+                                transition: 'opacity 0.2s',
+                                '&:hover': {
+                                    opacity: 0.8,
+                                },
+                            }}
+                        />
+                    </Link>
+                    <Box>
+                        <Typography 
+                            variant="h6" 
+                            component="div" 
+                            sx={{ 
+                                fontWeight: 600,
+                                fontSize: { xs: '1rem', sm: '1.25rem' },
+                            }}
+                        >
+                            <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                                SNDS WEB PORTAL
+                            </Box>
+                            <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>
+                                SNDS
+                            </Box>
+                        </Typography>
                     </Box>
-                    <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>
-                        SNDS
-                    </Box>
-                </Typography>
+                </Box>
                 
                 {/* Desktop Navigation - M3 Style */}
                 <Box sx={{ 
