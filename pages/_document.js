@@ -7,7 +7,7 @@ export default function Document() {
         <link
           rel="icon"
           type="image/png"
-          href="https://media.mysnds.com/portal/logosnds.png"
+          href="https://media.mysnds.com/portal/logosnds-2.png"
         />
         <link
           rel="stylesheet"

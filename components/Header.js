@@ -162,7 +162,7 @@ export default function Header() {
                     <Link href="/" style={{ textDecoration: 'none', display: 'flex' }}>
                         <Box
                             component="img"
-                            src="https://media.mysnds.com/portal/logosnds.png"
+                            src="https://media.mysnds.com/portal/logosnds-2.png"
                             alt="SNDS Logo"
                             sx={{
                                 height: { xs: '32px', sm: '40px' },

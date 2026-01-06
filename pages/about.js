@@ -47,8 +47,23 @@ export default function About() {
                             marginTop: 4,
                             marginBottom: 4,
                             borderRadius: 3,
+                            position: 'relative',
                         }}
                     >
+                        <Typography
+                            variant="caption"
+                            component="p"
+                            sx={{
+                                position: 'absolute',
+                                top: { xs: 16, sm: 20, md: 24 },
+                                right: { xs: 16, sm: 20, md: 24 },
+                                fontSize: { xs: '0.65rem', sm: '0.7rem', md: '0.85rem' },
+                                color: 'text.secondary',
+                                fontWeight: 400,
+                            }}
+                        >
+                            IPO Registration Certificate No. N-2021-00465
+                        </Typography>
                         <Typography
                             variant="h3"
                             component="h1"
@@ -73,10 +88,10 @@ export default function About() {
                         >
                             <Box
                                 component="img"
-                                src="https://media.mysnds.com/portal/logosnds.png"
+                                src="https://media.mysnds.com/portal/logosnds-2.png"
                                 alt="SNDS Logo"
                                 sx={{
-                                    height: { xs: '80px', sm: '100px', md: '120px' },
+                                    height: { xs: '80px', sm: '120px', md: '260px' },
                                     width: 'auto',
                                     objectFit: 'contain',
                                     marginBottom: 1,
@@ -89,7 +104,7 @@ export default function About() {
                                     fontWeight: 700,
                                     color: 'primary.main',
                                     marginBottom: 1,
-                                    fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' },
+                                    fontSize: { xs: '1.75rem', sm: '2.3rem', md: '3rem' },
                                     letterSpacing: '0.05em',
                                     lineHeight: 1.2,
                                 }}
