@@ -1,18 +1,21 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
+// Custom "Dark Military Green" / "Battlefield Green" palette
+// Derived from the "green logo" palette (https://www.color-hex.com/color-palette/198)
+// Darkened for battlefield aesthetic, then slightly lightened for optimal visibility
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2e7d32',
-      light: '#4caf50',
-      dark: '#1b5e20',
+      main: '#35705a',
+      light: '#44876e',
+      dark: '#284d3f',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#66bb6a',
-      light: '#81c784',
-      dark: '#388e3c',
+      main: '#44876e',
+      light: '#559f83',
+      dark: '#2d5f4a',
     },
     background: {
       default: '#f5f5f5',
