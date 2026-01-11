@@ -246,7 +246,7 @@ export default function Header() {
                                 transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                             }}
                         >
-                            About
+                            About Us
                         </Button>
                     </Link>
                     <Link href="/contact" style={{ textDecoration: 'none' }}>
@@ -393,7 +393,7 @@ export default function Header() {
                                 >
                                     <InfoIcon sx={{ mr: 2, color: 'white' }} />
                                     <ListItemText 
-                                        primary="About" 
+                                        primary="About Us"
                                         sx={{ 
                                             color: 'white',
                                             '& .MuiListItemText-primary': {
