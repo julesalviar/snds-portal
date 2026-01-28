@@ -77,9 +77,10 @@ export default function Home({ tenants, regionsData }) {
 
     // Compute default region: "SOCCSKSARGEN" if available, otherwise "all"
     const defaultRegion = useMemo(() => {
-        if (regionOptions.length === 0) return 'all';
-        const soccsksargenExists = regionOptions.some(opt => opt.name === 'SOCCSKSARGEN');
-        return soccsksargenExists ? 'SOCCSKSARGEN' : 'all';
+        // if (regionOptions.length === 0) return 'all';
+        // const soccsksargenExists = regionOptions.some(opt => opt.name === 'SOCCSKSARGEN');
+        // return soccsksargenExists ? 'SOCCSKSARGEN' : 'all';
+        return 'all';
     }, [regionOptions]);
 
     // State for selected region filter
