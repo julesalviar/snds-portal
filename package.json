@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "rm -rf .next out && next build",
-    "start": "next start -p 4000",
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind",
+    "start": "next build && npx serve@latest out -p 4000",
     "lint": "next lint",
     "clean": "rm -rf .next out node_modules/.cache"
   },
@@ -19,11 +20,14 @@
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "next": "^15.5.9",
+    "nextra": "^4.6.1",
+    "nextra-theme-docs": "^4.6.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "eslint": "^8.57.1",
-    "eslint-config-next": "^15.5.9"
+    "eslint-config-next": "^15.5.9",
+    "pagefind": "^1.4.0"
   }
 }

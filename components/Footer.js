@@ -1,4 +1,5 @@
 import { Box, Typography, Container } from '@mui/material';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -125,9 +126,16 @@ export default function Footer() {
             }}
         >
             <Container sx={{ position: 'relative', zIndex: 1 }}>
-                <Typography variant="body2">
-                    © {new Date().getFullYear()} SNDS. All rights reserved.
-                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                    <Typography variant="body2">
+                        © {new Date().getFullYear()} SNDS. All rights reserved.
+                    </Typography>
+                    <Typography variant="body2" component="span">
+                        <Link href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>
+                            Privacy Policy
+                        </Link>
+                    </Typography>
+                </Box>
             </Container>
         </Box>
     );

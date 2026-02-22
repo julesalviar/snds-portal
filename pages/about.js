@@ -19,7 +19,7 @@ export default function About() {
                 component="main"
                 sx={{
                     flexGrow: 1,
-                    padding: { xs: 2, sm: 3, md: 4 },
+                    padding: { xs: 1, sm: 2, md: 3 },
                     backgroundColor: 'background.default',
                     position: 'relative',
                     '&::before': {

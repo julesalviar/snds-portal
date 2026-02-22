@@ -3,6 +3,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import PolicyIcon from '@mui/icons-material/Policy';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -30,12 +32,12 @@ export default function Header() {
         return currentPath === path || currentPath.startsWith(path + '/');
     };
     return (
-        <AppBar 
-            position="static" 
-            elevation={0} 
-            sx={{ 
+        <>
+        <AppBar
+            position="fixed"
+            elevation={0}
+            sx={{
                 backgroundColor: 'primary.main',
-                position: 'relative',
                 overflow: 'hidden',
                 '&::before': {
                     content: '""',
@@ -273,6 +275,54 @@ export default function Header() {
                             Contact
                         </Button>
                     </Link>
+                    <Link href="/privacy" style={{ textDecoration: 'none' }}>
+                        <Button 
+                            variant={isActive('/privacy') ? 'contained' : 'text'}
+                            color="inherit" 
+                            startIcon={<PolicyIcon />}
+                            sx={{ 
+                                textTransform: 'none',
+                                fontWeight: isActive('/privacy') ? 600 : 500,
+                                padding: '10px 24px',
+                                borderRadius: '28px',
+                                minWidth: 'auto',
+                                backgroundColor: isActive('/privacy') 
+                                    ? 'rgba(255, 255, 255, 0.2)' 
+                                    : 'transparent',
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                                },
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                            }}
+                        >
+                            Privacy
+                        </Button>
+                    </Link>
+                    <Link href="/docs" prefetch={true} style={{ textDecoration: 'none' }}>
+                        <Button 
+                            variant={isActive('/docs') ? 'contained' : 'text'}
+                            color="inherit" 
+                            startIcon={<MenuBookIcon />}
+                            sx={{ 
+                                textTransform: 'none',
+                                fontWeight: isActive('/docs') ? 600 : 500,
+                                padding: '10px 24px',
+                                borderRadius: '28px',
+                                minWidth: 'auto',
+                                backgroundColor: isActive('/docs') 
+                                    ? 'rgba(255, 255, 255, 0.2)' 
+                                    : 'transparent',
+                                color: '#ffffff',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                                },
+                                transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                            }}
+                        >
+                            Docs
+                        </Button>
+                    </Link>
                 </Box>
 
                 {/* Mobile Menu Button - M3 Style */}
@@ -441,9 +491,85 @@ export default function Header() {
                                 </ListItemButton>
                             </Link>
                         </ListItem>
+                        <ListItem disablePadding>
+                            <Link href="/privacy" style={{ textDecoration: 'none', width: '100%' }}>
+                                <ListItemButton
+                                    selected={isActive('/privacy')}
+                                    onClick={handleDrawerToggle}
+                                    sx={{
+                                        borderRadius: '28px',
+                                        mb: 0.5,
+                                        backgroundColor: isActive('/privacy') 
+                                            ? 'rgba(255, 255, 255, 0.16)' 
+                                            : 'transparent',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                                        },
+                                        '&.Mui-selected': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                                            '&:hover': {
+                                                backgroundColor: 'rgba(255, 255, 255, 0.20)',
+                                            },
+                                        },
+                                        transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    }}
+                                >
+                                    <PolicyIcon sx={{ mr: 2, color: 'white' }} />
+                                    <ListItemText 
+                                        primary="Privacy Policy" 
+                                        sx={{ 
+                                            color: 'white',
+                                            '& .MuiListItemText-primary': {
+                                                fontWeight: isActive('/privacy') ? 600 : 500,
+                                                fontSize: '0.9375rem',
+                                            },
+                                        }}
+                                    />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <Link href="/docs" prefetch={true} style={{ textDecoration: 'none', width: '100%' }}>
+                                <ListItemButton
+                                    selected={isActive('/docs')}
+                                    onClick={handleDrawerToggle}
+                                    sx={{
+                                        borderRadius: '28px',
+                                        mb: 0.5,
+                                        backgroundColor: isActive('/docs') 
+                                            ? 'rgba(255, 255, 255, 0.16)' 
+                                            : 'transparent',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                                        },
+                                        '&.Mui-selected': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                                            '&:hover': {
+                                                backgroundColor: 'rgba(255, 255, 255, 0.20)',
+                                            },
+                                        },
+                                        transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    }}
+                                >
+                                    <MenuBookIcon sx={{ mr: 2, color: 'white' }} />
+                                    <ListItemText 
+                                        primary="Docs" 
+                                        sx={{ 
+                                            color: 'white',
+                                            '& .MuiListItemText-primary': {
+                                                fontWeight: isActive('/docs') ? 600 : 500,
+                                                fontSize: '0.9375rem',
+                                            },
+                                        }}
+                                    />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
                     </List>
                 </Box>
             </Drawer>
         </AppBar>
+        <Toolbar sx={{ minHeight: { xs: 56, sm: 64 } }} />
+        </>
     );
 }

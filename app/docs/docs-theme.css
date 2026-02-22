@@ -1,0 +1,98 @@
+/* SNDS Portal theme for Nextra – matches _app.js "Dark Military Green" palette */
+
+:root {
+  /* Primary: #35705a (primary.main) as HSL for Nextra's primary scale */
+  --nextra-primary-hue: 158;
+  --nextra-primary-saturation: 36%;
+  --nextra-primary-lightness: 32%;
+
+  /* Background: #f5f5f5 (background.default) as space-separated RGB */
+  --nextra-bg: 245 245 245;
+
+  /* Typography: match portal Roboto stack */
+  --x-font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --x-default-font-family: var(--x-font-sans);
+}
+
+/* Navbar: match portal header (primary green) */
+.nextra-navbar-blur {
+  background: #35705a !important;
+  backdrop-filter: none;
+}
+
+/* Docs navbar logo + text: match main Header (icon + "SNDS WEB PORTAL" / "SNDS") */
+.nextra-docs-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+}
+.nextra-docs-logo:hover {
+  opacity: 0.9;
+  color: #fff;
+}
+.nextra-docs-logo__img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+@media (min-width: 600px) {
+  .nextra-docs-logo {
+    font-size: 1.25rem;
+  }
+  .nextra-docs-logo__img {
+    height: 40px;
+  }
+}
+.nextra-docs-logo__text {
+  white-space: nowrap;
+}
+.nextra-docs-logo__text--short {
+  display: inline;
+}
+.nextra-docs-logo__text--full {
+  display: none;
+}
+@media (min-width: 600px) {
+  .nextra-docs-logo__text--short {
+    display: none;
+  }
+  .nextra-docs-logo__text--full {
+    display: inline;
+  }
+}
+
+/* Search bar: high contrast on green navbar – light field, dark text */
+.nextra-navbar .nextra-search {
+  color: #1a1a1a;
+}
+.nextra-navbar .nextra-search input {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #1a1a1a !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+.nextra-navbar .nextra-search input::placeholder {
+  color: #555 !important;
+}
+.nextra-navbar .nextra-search input:focus {
+  background: #fff !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  outline: none;
+}
+.nextra-navbar .nextra-search kbd {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #333 !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Sidebar active item and links use primary – already driven by --nextra-primary-* */
+.dark {
+  /* Dark mode background – slightly lighter than pure black for readability */
+  --nextra-bg: 30 30 30;
+}
