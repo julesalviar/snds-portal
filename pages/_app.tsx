@@ -1,9 +1,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import type { AppProps } from 'next/app';
 
-// Custom "Dark Military Green" / "Battlefield Green" palette
-// Derived from the "green logo" palette (https://www.color-hex.com/color-palette/198)
-// Darkened for battlefield aesthetic, then slightly lightened for optimal visibility
 const theme = createTheme({
   palette: {
     primary: {
@@ -60,7 +58,7 @@ const theme = createTheme({
   },
 });
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

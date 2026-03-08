@@ -1,14 +1,13 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { getPageMap } from 'nextra/page-map'
-import Link from 'next/link'
-import 'nextra-theme-docs/style.css'
-import './docs-theme.css'
+import { Footer, Layout, Navbar } from 'nextra-theme-docs';
+import { getPageMap } from 'nextra/page-map';
+import Link from 'next/link';
+import 'nextra-theme-docs/style.css';
+import './docs-theme.css';
 
-// Docs section is fully static (SSG) at build time
-export const dynamic = 'force-static'
-export const revalidate = false
+export const dynamic = 'force-static';
+export const revalidate = false;
 
-const logoImageUrl = 'https://media.mysnds.com/portal/logosnds-2.png'
+const logoImageUrl = 'https://media.mysnds.com/portal/logosnds-2.png';
 
 const navbar = (
   <Navbar
@@ -24,28 +23,31 @@ const navbar = (
       </Link>
     }
     logoLink={false}
-    projectLink={null}
-    docsRepositoryBase={null}
+    projectLink={undefined}
   />
-)
+);
 
 const footer = (
   <Footer>
     © {new Date().getFullYear()} SNDS. <Link href="/" prefetch={false}>Back to Portal</Link>
   </Footer>
-)
+);
 
-export default async function DocsLayout({ children }) {
-  const pageMap = await getPageMap('/docs')
+export default async function DocsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pageMap = await getPageMap('/docs');
   return (
     <Layout
       navbar={navbar}
       footer={footer}
       pageMap={pageMap}
-      editLink={null}
+      editLink={undefined}
       feedback={{ content: null }}
     >
       {children}
     </Layout>
-  )
+  );
 }
