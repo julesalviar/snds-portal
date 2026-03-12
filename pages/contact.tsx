@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Container, Typography, Box, Paper, Avatar } from '@mui/material';
+import { Container, Typography, Box, Paper } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
@@ -87,19 +87,8 @@ export default function Contact() {
                 borderRadius: 2,
               }}
             >
-              <Avatar
-                src="https://media.mysnds.com/about-us/gensan/sdogensan-1.png"
-                alt="Contact Person"
-                sx={{
-                  width: 200,
-                  height: 200,
-                  marginBottom: 2,
-                  border: '4px solid',
-                  borderColor: 'primary.main',
-                }}
-              />
               <Typography
-                variant="h5"
+                variant="h4"
                 component="h3"
                 sx={{
                   fontWeight: 600,
@@ -108,8 +97,9 @@ export default function Contact() {
                   textAlign: 'center',
                 }}
               >
-                HERVEN A. ALLADO, MST, MAED, RN
+                HERVEN A. ALLADO
               </Typography>
+
               <Typography
                 variant="body1"
                 component="p"
@@ -121,6 +111,18 @@ export default function Contact() {
                 }}
               >
                 Senior Education Program Specialist
+              </Typography>
+              <Typography
+                variant="h5"
+                component="h5"
+                sx={{
+                  fontWeight: 600,
+                  color: 'primary.main',
+                  marginBottom: 1,
+                  textAlign: 'center',
+                }}
+              >
+                DepEd Gensan
               </Typography>
               <Box
                 sx={{
