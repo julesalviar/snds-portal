@@ -1,0 +1,3 @@
+
+**It's important to remember that the School Network Data System (SNDS) tracks funding from all sources, not just external partners. This includes internal partners, government agencies, and other funding sources that support the school's programs, projects, and activities. The pre-installed 'stakeholder' list allows you to easily manage and engage with these various funding sources as needed.**<br>
+**Any stakeholders or sources of funds that are not currently included in the existing list should be signed up as new stakeholders within the system.**
