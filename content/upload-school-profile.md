@@ -16,6 +16,7 @@
 
 **Note:** *Please save in PDF format before uploading*
 
+![profile](../app/docs/public/schoolProfile1.png)
 
 ### Process steps in uploading School Profile.
 
@@ -26,3 +27,5 @@
 school profile.
 5. Click “update profile” button
 6. End of the process.
+
+![profile](../app/docs/public/schoolProfile2.png)

@@ -5,9 +5,11 @@
 
 **A. Annual Improvement Plan  (AIP).** This document serves as a repository of fundamental information concerning the Programs, Projects, and Activities (PPAs) being implemented.
 
+![Create Proj](../app/docs/public/createProj1.png)
 
 **B. Project Work Plan and Budget Matrix**.  This matrix provides comprehensive details pertaining to each PPA, thereby facilitating a verification of data consistency. 
 
+![Create Proj](../app/docs/public/createProj2.png)
 
 ### To craft a well-balanced 'need description' using ChatGPT, follow these steps:
 
@@ -19,3 +21,5 @@
 4. **Paste the Description:** Copy and paste the selected 'need description' into the designated 'need description' field to complete the encoding process for that particular need.<br>
 
 **Note:** *"You can reuse the same description multiple times under a single common Project, Program, and Activity (PPA). Simply modify portions of the description to ensure it accurately reflects the specific need requiring stakeholder support. "*
+
+![Create Proj](../app/docs/public/createProj3.png)

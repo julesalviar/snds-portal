@@ -33,6 +33,7 @@ box.<br>
 5. **Copy Coordinates:** The coordinates (latitude and longitude) will be displayed in the 
 information panel. Copy them.
 
+![school location](../app/docs/public/schoolLocation1.png)
 
 ### Process steps in uploading School Profile.
 **1.** Go to your school account.<br>
@@ -42,3 +43,5 @@ information panel. Copy them.
 box.<br>
 **5.** Click “update profile” button<br>
 **6.** End of the process.
+
+![school location](../app/docs/public/schoolLocation2.png)
