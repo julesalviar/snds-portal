@@ -18,3 +18,5 @@
 school profile.
 5. Click “update profile” button
 6. End of the process.
+
+![uploadLogo](../app/docs/public/schoolLogo.png)

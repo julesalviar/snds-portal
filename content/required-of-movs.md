@@ -23,3 +23,9 @@ a. Pictures<br>
 b. Purchase Order<br>
 c. Purchase Request<br>
 d. Sales Invoice
+
+![mov's](../app/docs/public/movs1.png)
+
+![mov's](../app/docs/public/movs2.png)
+
+3. Ensure that uploaded project photos are clear to enhance their visibility and appreciation.For infra projects, you may update your photos from time to time corresponding to the percentage of the “status of implementation”. Weekly updates are encouraged as this will be helpful for partners to monitor their partnership projects.
