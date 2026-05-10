@@ -8,15 +8,11 @@ Welcome to the Info Guide — a step‑by‑step tutorial that explains every fe
 2. Using Pre‑installed "Stakeholder" list: Use the built‑in stakeholder list for uniformity and consistency.
 3. Unit Guide list (the master list of units).
 4. Filling forms and inputting data: what fields are required, recommended formats, and where to enter additional information.
-5. Best practices and tips: recommended steps to ensure data consistency, naming conventions, and file format guidelines.
-6. Relevent information needed and to be encoded in the system (SNDS)
-
 
 ## Quick Start 
 (*this guide is applicable only for school admin users*)
 
 - [Unit Guide For Data Reliability and Accuracy](/docs/unit-guide)
-- [How to Create A Project Description Using ChatGPT](/docs/creating-project-description)
 - [How to Encode School Location Coordinates Using Google Maps](/docs/encoding-school-location)
 - [How to Upload a School Logo](/docs/uploading-school-logo) 
 - [How to Upload a School Profile](/docs/uploading-school-profile)
