@@ -1,8 +1,10 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs';
 import { getPageMap } from 'nextra/page-map';
 import Link from 'next/link';
+import FooterVisitorStrip from '../../components/FooterVisitorStrip';
 import 'nextra-theme-docs/style.css';
 import './docs-theme.css';
+import '../../styles/visitor-counter.css';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -28,9 +30,12 @@ const navbar = (
 );
 
 const footer = (
-  <Footer>
-    © {new Date().getFullYear()} SNDS. <Link href="/" prefetch={false}>Back to Portal</Link>
-  </Footer>
+  <>
+    <FooterVisitorStrip />
+    <Footer>
+      © {new Date().getFullYear()} SNDS. <Link href="/" prefetch={false}>Back to Portal</Link>
+    </Footer>
+  </>
 );
 
 export default async function DocsLayout({
