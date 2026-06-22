@@ -8,6 +8,17 @@ export interface TotalVisitorCountResponse {
   meta: { timestamp: string };
 }
 
+async function parseTotalVisitorCountResponse(
+  response: Response,
+): Promise<number | null> {
+  if (!response.ok) {
+    return null;
+  }
+
+  const body = (await response.json()) as TotalVisitorCountResponse;
+  return body.data.count;
+}
+
 export async function fetchTotalVisitorCount(): Promise<number | null> {
   try {
     const response = await fetch(
@@ -15,12 +26,23 @@ export async function fetchTotalVisitorCount(): Promise<number | null> {
       { credentials: 'omit' },
     );
 
-    if (!response.ok) {
-      return null;
-    }
+    return parseTotalVisitorCountResponse(response);
+  } catch {
+    return null;
+  }
+}
 
-    const body = (await response.json()) as TotalVisitorCountResponse;
-    return body.data.count;
+export async function recordPortalVisitorHit(): Promise<number | null> {
+  try {
+    const response = await fetch(
+      `${getPortalApiUrl()}/widgets/visitor-count/total/hit`,
+      {
+        method: 'POST',
+        credentials: 'omit',
+      },
+    );
+
+    return parseTotalVisitorCountResponse(response);
   } catch {
     return null;
   }

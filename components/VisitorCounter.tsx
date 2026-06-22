@@ -1,10 +1,44 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Box } from '@mui/material';
-import { fetchTotalVisitorCount } from '../lib/visitor-count';
+import {
+  fetchTotalVisitorCount,
+  recordPortalVisitorHit,
+} from '../lib/visitor-count';
+
+const VISITOR_HIT_SESSION_PREFIX = 'snds:portal-visitor-hit:';
+
+function getCurrentPathname(appPathname: string | null): string {
+  if (appPathname) {
+    return appPathname;
+  }
+
+  if (typeof window !== 'undefined') {
+    return window.location.pathname;
+  }
+
+  return '/';
+}
+
+function shouldRecordVisitorHit(pathname: string): boolean {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const key = `${VISITOR_HIT_SESSION_PREFIX}${pathname}`;
+  if (sessionStorage.getItem(key)) {
+    return false;
+  }
+
+  sessionStorage.setItem(key, '1');
+  return true;
+}
 
 export default function VisitorCounter() {
+  const appPathname = usePathname();
+  const pathname = getCurrentPathname(appPathname);
   const [count, setCount] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -12,14 +46,28 @@ export default function VisitorCounter() {
   useEffect(() => {
     requestAnimationFrame(() => setVisible(true));
 
-    fetchTotalVisitorCount().then((value) => {
-      if (value === null) {
-        setFailed(true);
+    const recordHit = shouldRecordVisitorHit(pathname);
+    const countPromise = recordHit
+      ? recordPortalVisitorHit()
+      : fetchTotalVisitorCount();
+
+    countPromise.then(async (value) => {
+      if (value !== null) {
+        setCount(value);
         return;
       }
-      setCount(value);
+
+      if (recordHit) {
+        const fallbackCount = await fetchTotalVisitorCount();
+        if (fallbackCount !== null) {
+          setCount(fallbackCount);
+          return;
+        }
+      }
+
+      setFailed(true);
     });
-  }, []);
+  }, [pathname]);
 
   if (failed) {
     return null;
