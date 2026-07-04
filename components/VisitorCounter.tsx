@@ -1,44 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import { Box } from '@mui/material';
 import {
   fetchTotalVisitorCount,
+  getPortalVisitorSessionId,
+  hasRecordedPortalVisitorHitThisSession,
+  markPortalVisitorHitRecordedThisSession,
   recordPortalVisitorHit,
 } from '../lib/visitor-count';
 
-const VISITOR_HIT_SESSION_PREFIX = 'snds:portal-visitor-hit:';
-
-function getCurrentPathname(appPathname: string | null): string {
-  if (appPathname) {
-    return appPathname;
-  }
-
-  if (typeof window !== 'undefined') {
-    return window.location.pathname;
-  }
-
-  return '/';
-}
-
-function shouldRecordVisitorHit(pathname: string): boolean {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-
-  const key = `${VISITOR_HIT_SESSION_PREFIX}${pathname}`;
-  if (sessionStorage.getItem(key)) {
-    return false;
-  }
-
-  sessionStorage.setItem(key, '1');
-  return true;
-}
-
 export default function VisitorCounter() {
-  const appPathname = usePathname();
-  const pathname = getCurrentPathname(appPathname);
   const [count, setCount] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -46,13 +18,18 @@ export default function VisitorCounter() {
   useEffect(() => {
     requestAnimationFrame(() => setVisible(true));
 
-    const recordHit = shouldRecordVisitorHit(pathname);
+    const sessionId = getPortalVisitorSessionId();
+    const recordHit =
+      sessionId.length > 0 && !hasRecordedPortalVisitorHitThisSession();
     const countPromise = recordHit
-      ? recordPortalVisitorHit()
+      ? recordPortalVisitorHit(sessionId)
       : fetchTotalVisitorCount();
 
     countPromise.then(async (value) => {
       if (value !== null) {
+        if (recordHit) {
+          markPortalVisitorHitRecordedThisSession();
+        }
         setCount(value);
         return;
       }
@@ -67,7 +44,7 @@ export default function VisitorCounter() {
 
       setFailed(true);
     });
-  }, [pathname]);
+  }, []);
 
   if (failed) {
     return null;
