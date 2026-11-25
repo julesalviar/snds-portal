@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Divider, Tooltip } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -9,9 +9,13 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+const DOCS_NAV_DISABLED = true;
+const DOCS_DISABLED_MESSAGE = 'Docs is temporarily unavailable.';
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
+  const [docsTooltipOpen, setDocsTooltipOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,6 +24,7 @@ export default function Header() {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+    setDocsTooltipOpen(false);
   };
 
   const isActive = (path: string): boolean => {
@@ -183,9 +188,38 @@ export default function Header() {
             <Link href="/privacy" style={{ textDecoration: 'none' }}>
               <Button variant={isActive('/privacy') ? 'contained' : 'text'} color="inherit" startIcon={<PolicyIcon />} sx={{ textTransform: 'none', fontWeight: isActive('/privacy') ? 600 : 500, padding: '10px 24px', borderRadius: '28px', minWidth: 'auto', backgroundColor: isActive('/privacy') ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: '#ffffff', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.15)' }, transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}>Privacy</Button>
             </Link>
-            <Link href="/docs" prefetch={true} style={{ textDecoration: 'none' }}>
-              <Button variant={isActive('/docs') ? 'contained' : 'text'} color="inherit" startIcon={<MenuBookIcon />} sx={{ textTransform: 'none', fontWeight: isActive('/docs') ? 600 : 500, padding: '10px 24px', borderRadius: '28px', minWidth: 'auto', backgroundColor: isActive('/docs') ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: '#ffffff', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.15)' }, transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}>Docs</Button>
-            </Link>
+            {DOCS_NAV_DISABLED ? (
+              <Tooltip title={DOCS_DISABLED_MESSAGE}>
+                <span>
+                  <Button
+                    variant="text"
+                    color="inherit"
+                    startIcon={<MenuBookIcon />}
+                    aria-disabled
+                    onClick={(event) => event.preventDefault()}
+                    sx={{
+                      textTransform: 'none',
+                      fontWeight: 500,
+                      padding: '10px 24px',
+                      borderRadius: '28px',
+                      minWidth: 'auto',
+                      backgroundColor: 'transparent',
+                      color: '#ffffff',
+                      opacity: 0.55,
+                      cursor: 'not-allowed',
+                      '&:hover': { backgroundColor: 'transparent' },
+                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                    }}
+                  >
+                    Docs
+                  </Button>
+                </span>
+              </Tooltip>
+            ) : (
+              <Link href="/docs" prefetch={true} style={{ textDecoration: 'none' }}>
+                <Button variant={isActive('/docs') ? 'contained' : 'text'} color="inherit" startIcon={<MenuBookIcon />} sx={{ textTransform: 'none', fontWeight: isActive('/docs') ? 600 : 500, padding: '10px 24px', borderRadius: '28px', minWidth: 'auto', backgroundColor: isActive('/docs') ? 'rgba(255, 255, 255, 0.2)' : 'transparent', color: '#ffffff', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.15)' }, transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}>Docs</Button>
+              </Link>
+            )}
           </Box>
 
           <IconButton color="inherit" aria-label="open drawer" edge="end" onClick={handleDrawerToggle} sx={{ display: { xs: 'block', md: 'none' }, padding: '12px', borderRadius: '24px', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.12)' }, transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}>
@@ -231,12 +265,42 @@ export default function Header() {
                 </Link>
               </ListItem>
               <ListItem disablePadding>
-                <Link href="/docs" prefetch={true} style={{ textDecoration: 'none', width: '100%' }}>
-                  <ListItemButton selected={isActive('/docs')} onClick={handleDrawerToggle} sx={{ borderRadius: '28px', mb: 0.5, backgroundColor: isActive('/docs') ? 'rgba(255, 255, 255, 0.16)' : 'transparent', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.12)' }, '&.Mui-selected': { backgroundColor: 'rgba(255, 255, 255, 0.16)', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.20)' } }, transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}>
-                    <MenuBookIcon sx={{ mr: 2, color: 'white' }} />
-                    <ListItemText primary="Docs" sx={{ color: 'white', '& .MuiListItemText-primary': { fontWeight: isActive('/docs') ? 600 : 500, fontSize: '0.9375rem' } }} />
-                  </ListItemButton>
-                </Link>
+                {DOCS_NAV_DISABLED ? (
+                  <Tooltip
+                    title={DOCS_DISABLED_MESSAGE}
+                    open={docsTooltipOpen}
+                    onClose={() => setDocsTooltipOpen(false)}
+                    disableHoverListener
+                    disableFocusListener
+                    disableTouchListener
+                  >
+                    <span style={{ width: '100%' }}>
+                      <ListItemButton
+                        aria-disabled
+                        onClick={() => setDocsTooltipOpen(true)}
+                        sx={{
+                          borderRadius: '28px',
+                          mb: 0.5,
+                          backgroundColor: 'transparent',
+                          opacity: 0.55,
+                          cursor: 'not-allowed',
+                          '&:hover': { backgroundColor: 'transparent' },
+                          transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                        }}
+                      >
+                        <MenuBookIcon sx={{ mr: 2, color: 'white' }} />
+                        <ListItemText primary="Docs" sx={{ color: 'white', '& .MuiListItemText-primary': { fontWeight: 500, fontSize: '0.9375rem' } }} />
+                      </ListItemButton>
+                    </span>
+                  </Tooltip>
+                ) : (
+                  <Link href="/docs" prefetch={true} style={{ textDecoration: 'none', width: '100%' }}>
+                    <ListItemButton selected={isActive('/docs')} onClick={handleDrawerToggle} sx={{ borderRadius: '28px', mb: 0.5, backgroundColor: isActive('/docs') ? 'rgba(255, 255, 255, 0.16)' : 'transparent', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.12)' }, '&.Mui-selected': { backgroundColor: 'rgba(255, 255, 255, 0.16)', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.20)' } }, transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}>
+                      <MenuBookIcon sx={{ mr: 2, color: 'white' }} />
+                      <ListItemText primary="Docs" sx={{ color: 'white', '& .MuiListItemText-primary': { fontWeight: isActive('/docs') ? 600 : 500, fontSize: '0.9375rem' } }} />
+                    </ListItemButton>
+                  </Link>
+                )}
               </ListItem>
             </List>
           </Box>
